@@ -6,5 +6,10 @@ class Cat < ApplicationRecord
   validates :sex, inclusion: { in: %w(M F),
     message: "%{value} is not a sex"}
 
-    
+
+    has_many :cat_rental_requests,
+      primary_key: :id,
+      foreign_key: :cat_id,
+      class_name: "CatRentalRequest",
+      dependent: :destroy
 end
